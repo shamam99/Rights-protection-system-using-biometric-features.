@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px; /* Adjust the maximum width as needed */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.container form {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px; /* Adds space between form and alert */
+}
+
+.container form label {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+}
+
+.container form input[type="text"],
+.container form input[type="password"],
+.container form input[type="number"],
+.container form input[type="date"],
+.container form input[type="file"],
+.container form button,
+.container form input[type="submit"] {
+    width: calc(100% - 22px);
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #444;
+    margin-top: 5px;
+}
+
+.container form input[type="submit"],
+.container form button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background: rgb(0, 119, 255);
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.container form input[type="submit"]:hover,
+.container form button:hover {
+    background: rgb(0, 17, 255);
+    transition: all 0.3s ease;
+}
+
+::placeholder {
+    font-size: 16px;
+}
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.button-link:hover {
+    background-color: #2980b9;
+}
+
+.alert {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+#successAlert {
+    background: rgb(0, 255, 106);
+}
+
+#errorAlert {
+    background: rgb(255, 69, 0);
+}

@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "insurance camera",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patients Information Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+<div class="container">
+<form id="patientForm">
+    <h2>Patient Information</h2>
+    
+    <label for="patientId">Patient ID:</label>
+    <input type="text" id="patientId" name="patientId" required><br><br>
+    
+    <label for="name">First Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="Lname">Last Name:</label>
+    <input type="text" id="Lname" name="Lname" required><br><br>
+    
+    <label for="insuranceYear">Insurance Year:</label>
+    <input type="number" id="insuranceYear" name="insuranceYear" required><br><br>
+    
+    <label for="totalVisit">Total Visit:</label>
+    <input type="number" id="totalVisit" name="totalVisit" required><br><br>
+    
+    <label for="bloodtype">Blood Type:</label>
+    <input type="text" id="bloodtype" name="bloodtype" required><br><br>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br><br>
+    
+    <label for="lastVerifyTime">Last Verify Time:</label>
+    <input type="text" id="lastVerifyTime" name="lastVerifyTime" required><br><br>
+    
+    <label for="fingerprintReference">Fingerprint Reference:</label>
+    <input type="text" id="fingerprintReference" name="fingerprintReference" required><br><br>
+
+    <label for="imageUpload">Upload Face Image:</label>
+    <input type="file" id="imageUpload" name="imageUpload"><br><br>
+
+    <label for="fingerprintImageUpload">Upload Fingerprint Image:</label>
+    <input type="file" id="fingerprintImageUpload" name="fingerprintImageUpload"><br><br>
+
+    <button id="scanFingerprint">Scan Fingerprint</button><br><br>
+    
+    <input type="submit" value="Submit"> 
+</form>
+<div id="successAlert" class="alert">Success: Data added to Firebase.</div>
+<a href= "http://127.0.0.1:5000/"><button class="button-link">verification</button></a>
+</div>
+</div>
+<script>
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyBH65dWQzwleER-NYZvW87U7vvCyKD3NZg",
+      
+        authDomain: "verifyingofpatients.firebaseapp.com",
+      
+        databaseURL: "https://verifyingofpatients-default-rtdb.firebaseio.com",
+      
+        projectId: "verifyingofpatients",
+      
+        storageBucket: "verifyingofpatients.appspot.com",
+      
+        messagingSenderId: "686659115289",
+      
+        appId: "1:686659115289:web:a4c883de7ed0103e74cd88",
+      
+        measurementId: "G-RV5L8227ZL"
+      
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    
+      // Reference to your Firebase database
+      const db = firebase.database();
+      const storage = firebase.storage();
+
+
+    document.getElementById('patientForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+
+        const formData = {
+            "patientId": document.getElementById('patientId').value,
+            "name": document.getElementById('name').value,
+            "Lname": document.getElementById('Lname').value,
+            "insuranceYear": parseInt(document.getElementById('insuranceYear').value),
+            "totalVisit": parseInt(document.getElementById('totalVisit').value),
+            "bloodtype": document.getElementById('bloodtype').value,
+            "age": parseInt(document.getElementById('age').value),
+            "lastVerifyTime": document.getElementById('lastVerifyTime').value,
+            "fingerprintReference": document.getElementById('fingerprintReference').value
+        };
+
+        // Get the uploaded file
+        const file = document.getElementById('imageUpload').files[0];
+
+        const fingerprintFile = document.getElementById('fingerprintImageUpload').files[0];
+
+
+        if (!fingerprintFile) {
+            console.error('No fingerprint image selected.');
+            // Optionally, display an error message to the user indicating no image was selected
+            return;
+        }
+
+        // Reference to the patient's image in Firebase Storage
+        const storageRef = storage.ref('patient_images/' + formData.patientId + '/' + file.name);
+
+        const fingerprintStorageRef = storage.ref(`finger/${document.getElementById('patientId').value}/fingerprint.jpg`);
+
+        // Upload patient image
+        const uploadPatientImage = storageRef.put(file);
+
+        // Upload fingerprint image
+        const uploadFingerprintImage = fingerprintStorageRef.put(fingerprintFile);
+
+        // Wait for both image uploads to complete
+        Promise.all([uploadPatientImage, uploadFingerprintImage])
+            .then((results) => {
+                console.log('Images uploaded:', results);
+
+                // Get the download URL for the patient image
+                return results[0].ref.getDownloadURL();
+            })
+            .then((downloadURL) => {
+                formData.imageURL = downloadURL;
+
+                // Push or post  formData with imageURL to the 'test' node
+                return db.ref('test').push(formData);
+            })
+            .then(() => {
+                console.log('Data added to Firebase.');
+
+                const successAlert = document.getElementById('successAlert');
+                successAlert.style.display = 'block';
+                setTimeout(() => {
+                    successAlert.style.display = 'none';
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                if (error.message === 'No matching') {
+                    // Display an error message for "No matching" scenario
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'No matching found.';
+                    errorMessage.style.color = 'red'; // Style the error message
+                    document.body.appendChild(errorMessage); // You can append this error message wherever needed
+                } else {
+                    // Handle other errors here
+                }
+            });
+    });
+</script>
+
+</body>
+</html>

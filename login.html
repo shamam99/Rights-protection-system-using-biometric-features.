@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form id="adminLoginForm">
+                <h2>Admin Login</h2>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+
+                <input type="submit" value="Login">
+            </form>
+            <a href="form.html" class="button-link">Back to Patient Form</a>
+        </div>
+    </div>
+
+    <script>
+        // Simulated admin credentials (Replace this with your actual authentication logic)
+        const validAdminCredentials = {
+            username: "admin",
+            password: "admin123"
+        };
+    
+        document.getElementById('adminLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            // Fetch input values
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+    
+            // Check if the entered credentials match the valid admin credentials
+            if (usernameInput === validAdminCredentials.username && passwordInput === validAdminCredentials.password) {
+                // Authentication successful
+                alert('Login successful! Redirecting...');
+    
+                // Redirect to another page (replace 'dashboard.html' with your desired admin panel page)
+                window.location.href = 'form.html';
+            } else {
+                // Authentication failed
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

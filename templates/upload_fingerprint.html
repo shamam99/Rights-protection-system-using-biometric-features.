@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <title>Upload and Scan Fingerprint</title>
+</head>
+<body>
+    <h1>Upload and Scan Fingerprint</h1>
+    <form id="fingerprintForm" enctype="multipart/form-data">
+        <input type="file" name="fingerprint" id="fingerprintInput" accept=".bmp" style="display: none;">
+        <button id="uploadButton" type="button">Upload Fingerprint Image</button>
+        <button id="scanButton" type="button" style="display: none;">Scan</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            document.getElementById('fingerprintInput').click();
+        });
+
+        document.getElementById('fingerprintInput').addEventListener('change', function() {
+            document.getElementById('scanButton').style.display = 'block';
+        });
+
+        document.getElementById('scanButton').addEventListener('click', function() {
+            const formData = new FormData(document.getElementById('fingerprintForm'));
+
+            fetch('/upload_fingerprint', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Display the result in a pop-up alert
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Match Result</title>
+</head>
+<body>
+    {% if patient_data %}
+        <h1>Patient Information:</h1>
+        <p>
+            Name: {{ patient_data.name }} <br>
+            Last Name: {{ patient_data.Lname }} <br>
+            Age: {{ patient_data.Age }} <br>
+            Blood Type: {{ patient_data.bloodtype }} <br>
+            Insurance Year: {{ patient_data.insurance_year }} <br>
+            Total Visits: {{ patient_data.total_visit }} <br>
+            Last Verification Time: {{ patient_data.last_verify_time }}
+            <!-- Add any other patient information you want to display -->
+        </p>
+    {% else %}
+        <h1>Result:</h1>
+        <p>No matching fingerprint</p>
+    {% endif %}
+</body>
+</html>
+
+

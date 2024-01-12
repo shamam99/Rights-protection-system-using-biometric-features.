@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Information</title>
+</head>
+<body>
+    <h1>Patient Information:</h1>
+    {% if patient_info %}
+        <p>
+            Name: {{ patient_info['name'] }} <br>
+            Last Name: {{ patient_info['Lname'] }} <br>
+            Age: {{ patient_info['Age'] }} <br>
+            Blood Type: {{ patient_info['bloodtype'] }} <br>
+            Insurance Year: {{ patient_info['insurance_year'] }} <br>
+            Total Visits: {{ patient_info['total_visit'] }} <br>
+            Last Verification Time: {{ patient_info['last_verify_time'] }}
+        </p>
+    {% else %}
+        <p>No patient information available</p>
+    {% endif %}
+</body>
+</html>

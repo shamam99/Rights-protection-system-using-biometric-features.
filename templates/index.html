@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Matcher</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+</head>
+<body>
+    <h1>Facial Recognition</h1>
+    <button id="activateCamera">Activate Camera</button>
+    <button id="deactivateCamera">Deactivate Camera</button>
+    <div>
+        {% if matched_patient %}
+            <a href="/result/{{ matched_patient }}"><button>View Patient {{ matched_patient }}</button></a>
+        {% endif %}
+    </div>
+    <div>
+        <h1>Upload and Scan Fingerprint</h1>
+        <form id="fingerprintForm" enctype="multipart/form-data">
+            <input type="file" name="fingerprint" id="fingerprintInput" accept=".bmp" style="display: none;">
+            <button id="uploadButton" type="button">Upload Fingerprint Image</button>
+            <button id="scanButton" type="button" style="display: none;">Scan</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('activateCamera').addEventListener('click', function() {
+            // Perform an AJAX request to the Flask server
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/activate_camera');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log('Camera activated');
+                    // Show a message or handle the response here
+                    alert(xhr.responseText);
+                } else {
+                    console.log('Error activating camera');
+                }
+            };
+            xhr.send();
+        });
+
+        document.getElementById('deactivateCamera').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/deactivate_camera');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log('Camera deactivated');
+                    // Show a message or handle the response here
+                    alert(xhr.responseText);
+                } else {
+                    console.log('Error deactivating camera');
+                }
+            };
+            xhr.send();
+        });
+
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            document.getElementById('fingerprintInput').click();
+        });
+
+        document.getElementById('fingerprintInput').addEventListener('change', function() {
+            document.getElementById('scanButton').style.display = 'block';
+        });
+
+        document.getElementById('scanButton').addEventListener('click', function() {
+            const formData = new FormData(document.getElementById('fingerprintForm'));
+
+            fetch('/upload_fingerprint', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Display the result in a pop-up alert
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,59 +1,68 @@
 # Rights-protection-system-using-biometric-features.
-Employing artificial intelligence to create models to identify fingerprints with high efficiency, even in cases of deformity, along with the facial recognition system, are included in an 
-intermediary system between hospitals and insurance companies that aims to protect health by detecting cases of identity theft that lead to tampering with patients’ medical records and defrauding the companies. 
+Overview
 
+This project focuses on enhancing security in the healthcare sector by implementing an intermediary system between hospitals and insurance companies. The system employs advanced fingerprint verification and facial recognition technologies to safeguard patient information and prevent identity theft, ultimately contributing to the integrity of healthcare procedures.
+Abstract
 
-
-Abstract:
-
-Insurance companies offer crucial health coverage to the community, streamlining hospital operations. When a patient arrives, the receptionist inquires about their medical insurance. If insured, the patient provides identity, phone, and file numbers for clinic access. Yet, challenges arise due to impersonation, especially in veiled sections, hindering photo-based identification.
-To combat this, we propose an advanced solution: a sophisticated fingerprint verification system coupled with cutting-edge facial recognition technology. This system intertwines insurance holders with their records in the hospital's database, mandating fingerprint or facial validation for file access or department entry. The primary aim is to curtail impersonation risks in the women's department, eventually encompassing all patients to minimize fraudulent activities within hospital procedures. The facial recognition element enhances identification accuracy, especially in cases where veils obscure facial features in photos, providing an additional layer of verification for comprehensive security and reliability.
-
-
+Identity theft poses a significant challenge in healthcare, especially during interactions between patients, hospitals, and insurance companies. This project proposes an innovative solution—a comprehensive verification system that intertwines fingerprint and facial recognition technologies. The primary objective is to establish a secure intermediary system, ensuring that only authorized individuals can access and modify patient records.
 Introduction and Background
-Historically and presently, global reliance on hospitals for medical care, albeit at a cost, has been evident. Yet, technological advancements and evolving environments have spurred business expansion, fostering new trades like the insurance sector.
-Insurance companies serve as intermediaries between hospitals and the populace. Individuals pay a yearly fee for a card enabling discounted treatment access. Amidst this, concerns linger: Is client data secure? Are patients' rights upheld, including the confidentiality of medical records?
-While patient rights are typically safeguarded, attention shifts to protecting the insurance companies themselves. The industry faces potential threats like hacking or fraud, prompting the need for preventive measures and client education on these risks' severity.
+
+As hospitals play a vital role in providing medical care, insurance companies act as intermediaries, streamlining operations and providing coverage. This project addresses concerns about patient data security, emphasizing the protection of insurance companies from potential threats such as hacking or fraud. The intermediary system aims to authenticate users through fingerprints and facial recognition, enhancing overall healthcare security.
 Goal
-●
-Establishing a safe and effective system that acts as an intermediary between the hospital and the insurance company
-●
-The system works by authenticating with a fingerprint.
-●
-It provides facial recognition as an alternative authentication system.
+
+    Establish a secure and effective intermediary system between hospitals and insurance companies.
+    Implement fingerprint authentication and provide facial recognition as an alternative method.
+
 Motivation
-Through our research, we found that insurance identity theft rates are high in hospitals, which made us think about creating a documentation system that contributes to detecting identity theft and preserving rights.
+
+High rates of insurance identity theft in hospitals prompted the need for a documentation system to detect identity theft and preserve patient rights. This project aims to contribute to the detection of fraudulent activities and enhance overall healthcare security.
 Signification
-The importance of our project is to provide protection and privacy for patients and insurance companies through flexible authentication methods in the system.
-16
-16
+
+The importance of this project lies in providing protection and privacy for both patients and insurance companies through flexible and secure authentication methods within the system.
 Method
-Agile SDLC Model
-It's used for time-critical applications in organizations employing disciplined methods. It speeds up the life cycle phases and has reduced scope.
-Advantages:
-•
-Functional requirement corrections are integrated into the development process to enhance competitiveness.
-•
-The project is segmented into brief, transparent iterations.
-•
-Risks are mitigated through a flexible change process.
-•
-Prompt release of the initial product version is prioritized.
 
-Disadvantages:
-•
-Challenges in determining the ultimate cost due to continual modifications.
-•
-The team ought to possess high professionalism and prioritize client satisfaction.
-•
-Introduction of new requirements might clash with the current architecture.
-Cumulative corrections and alterations may lead to the project surpassing the expected timeline.
-
+The Agile Software Development Life Cycle (SDLC) model is employed for its advantages in time-critical applications. It facilitates quick life cycle phases, functional requirement corrections, and risk mitigation. The system's flexibility allows for prompt adjustments and addresses potential risks efficiently.
 Report Outline
-We started the project by defining the idea, ideas, and purpose of the project. Then we began explaining the problem and creating questionnaires related to the project. Next, the approach and how to manage risks were determined. The project requirements were also determined, and after analyzing the system, work began on designing and implementing it in a practical way to test the user experience and present it to the committee.
 
+The project started by defining the idea, understanding the problem, creating questionnaires, managing risks, determining project requirements, and designing and implementing the system. The report outlines a systematic approach to ensure the successful implementation of the healthcare security system.
 Summary
-After the goal and purpose of the project mentioned above have been clarified, as well as defining the approach to working on the project, we will continue in the following chapter by clarifying similar applications as well as the core of the problem that exists in them.
+
+After clarifying the project's goal, purpose, and approach, the subsequent chapters will delve into similar applications and the core problems they face. The focus is on providing a comprehensive solution to identity theft within the healthcare sector.
+Technology Stack
+
+The project utilizes Python, Flask, and Firebase as a runtime database. Users are required to download multiple libraries for project functionality and connect the data to their own Firebase database.
+Getting Started
+
+To initiate the project, follow these steps:
+
+    Clone the repository: git clone https://github.com/your-username/your-repository.git
+    Install the required dependencies: pip install -r requirements.txt
+    Configure your Firebase database credentials.
+    Run the application: python app.py
+
+Project Structure
+
+The project is structured as follows:
+
+    app.py: The main application file.
+    form.html, login.html, style.css, and other HTML/CSS files: Front-end files for user interaction.
+    index.html: Main HTML file for the facial recognition component.
+    uploads/: Directory for storing uploaded images.
+    static/: Directory containing static assets like CSS files.
+    templates/: Directory containing HTML templates.
+    README.md: Project documentation.
+
+Usage
+
+Describe how to use the application or any specific instructions for users.
+Libraries and Dependencies
+
+The project utilizes several libraries and dependencies, including:
+
+    Flask: Web framework for Python.
+    Firebase: Realtime database and storage service.
+    OpenCV: Computer vision library for image processing.
+    Firebase Admin SDK: Firebase SDK for server-side usage.
 
 
 

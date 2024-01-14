@@ -35,7 +35,7 @@ Getting Started
 
 To initiate the project, follow these steps:
 
-    Clone the repository: git clone https://github.com/your-username/your-repository.git
+    Clone the repository: git clone https://github.com/your-username/your-repository.git](https://github.com/shamam99/Rights-protection-system-using-biometric-features..git)
     Install the required dependencies: pip install -r requirements.txt
     Configure your Firebase database credentials.
     Run the application: python app.py
